@@ -1,0 +1,304 @@
+<!-- Composant de recherche audio pour le site ZOLA -->
+<div class="audio-search-container" id="audioSearchContainer">
+  <!-- Barre de recherche -->
+  <div class="search-bar">
+    <div class="search-input-wrapper">
+      <i class="fas fa-search search-icon"></i>
+      <input 
+        type="text" 
+        id="audioSearchInput" 
+        class="search-input" 
+        placeholder="Rechercher dans la discographie de ZOLA..."
+        aria-label="Recherche audio"
+      >
+      <button class="search-clear" id="searchClear" aria-label="Effacer la recherche">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+    
+    <!-- Filtres rapides -->
+    <div class="quick-filters">
+      <button class="filter-btn active" data-filter="all" aria-label="Tous les fichiers">
+        <i class="fas fa-music"></i>
+        <span>Tous</span>
+      </button>
+      <button class="filter-btn" data-filter="effects" aria-label="Effets sonores">
+        <i class="fas fa-volume-up"></i>
+        <span>Effets</span>
+      </button>
+      <button class="filter-btn" data-filter="albums" aria-label="Albums">
+        <i class="fas fa-compact-disc"></i>
+        <span>Albums</span>
+      </button>
+      <button class="filter-btn" data-filter="songs" aria-label="Chansons">
+        <i class="fas fa-microphone"></i>
+        <span>Chansons</span>
+      </button>
+      <button class="filter-btn" data-filter="interviews" aria-label="Interviews">
+        <i class="fas fa-comments"></i>
+        <span>Interviews</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Filtres avancés -->
+  <div class="advanced-filters" id="advancedFilters">
+    <div class="filter-group">
+      <label for="albumFilter">Album:</label>
+      <select id="albumFilter" class="filter-select">
+        <option value="all">Tous les albums</option>
+        <option value="origines">Origines (EP 2020)</option>
+        <option value="evolution">Évolution (Album 2022)</option>
+        <option value="nouveau-monde">Nouveau Monde (Single 2023)</option>
+      </select>
+    </div>
+    
+    <div class="filter-group">
+      <label for="durationFilter">Durée:</label>
+      <select id="durationFilter" class="filter-select">
+        <option value="all">Toutes durées</option>
+        <option value="short">Court (< 2 min)</option>
+        <option value="medium">Moyen (2-5 min)</option>
+        <option value="long">Long (> 5 min)</option>
+      </select>
+    </div>
+    
+    <div class="filter-group">
+      <label for="yearFilter">Année:</label>
+      <select id="yearFilter" class="filter-select">
+        <option value="all">Toutes années</option>
+        <option value="2018">2018</option>
+        <option value="2020">2020</option>
+        <option value="2022">2022</option>
+        <option value="2023">2023</option>
+        <option value="2024">2024</option>
+      </select>
+    </div>
+    
+    <div class="filter-group">
+      <label for="tagFilter">Tags:</label>
+      <div class="tag-filters">
+        <label class="tag-checkbox">
+          <input type="checkbox" value="gta" data-tag="gta">
+          <span>GTA</span>
+        </label>
+        <label class="tag-checkbox">
+          <input type="checkbox" value="mission" data-tag="mission">
+          <span>Mission</span>
+        </label>
+        <label class="tag-checkbox">
+          <input type="checkbox" value="sample" data-tag="sample">
+          <span>Sample</span>
+        </label>
+        <label class="tag-checkbox">
+          <input type="checkbox" value="rap" data-tag="rap">
+          <span>Rap</span>
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <!-- Résultats de recherche -->
+  <div class="search-results" id="searchResults">
+    <div class="results-header">
+      <h3>Résultats de recherche</h3>
+      <div class="results-count">
+        <span id="resultsCount">0</span> fichier(s) trouvé(s)
+      </div>
+    </div>
+    
+    <div class="results-grid" id="resultsGrid">
+      <!-- Les résultats seront injectés ici dynamiquement -->
+    </div>
+    
+    <!-- État de chargement -->
+    <div class="loading-state" id="loadingState" style="display: none;">
+      <div class="loading-spinner"></div>
+      <p>Recherche en cours...</p>
+    </div>
+    
+    <!-- État vide -->
+    <div class="empty-state" id="emptyState" style="display: none;">
+      <i class="fas fa-search"></i>
+      <h4>Aucun résultat trouvé</h4>
+      <p>Essayez de modifier vos critères de recherche</p>
+    </div>
+  </div>
+
+  <!-- Lecteur audio intégré -->
+  <div class="audio-player-embedded" id="audioPlayerEmbedded">
+    <div class="player-header">
+      <h4>Lecteur ZOLA</h4>
+      <div class="player-controls">
+        <button class="player-btn" id="prevTrack" aria-label="Piste précédente">
+          <i class="fas fa-step-backward"></i>
+        </button>
+        <button class="player-btn play-pause" id="playPause" aria-label="Lecture/Pause">
+          <i class="fas fa-play"></i>
+        </button>
+        <button class="player-btn" id="nextTrack" aria-label="Piste suivante">
+          <i class="fas fa-step-forward"></i>
+        </button>
+        <button class="player-btn" id="stopTrack" aria-label="Arrêter">
+          <i class="fas fa-stop"></i>
+        </button>
+      </div>
+    </div>
+    
+    <div class="player-info">
+      <div class="track-info">
+        <div class="track-title" id="currentTrackTitle">Aucune piste sélectionnée</div>
+        <div class="track-artist" id="currentTrackArtist">ZOLA</div>
+        <div class="track-album" id="currentTrackAlbum"></div>
+      </div>
+      
+      <div class="track-progress">
+        <div class="progress-bar">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+        <div class="time-display">
+          <span id="currentTime">0:00</span>
+          <span id="totalTime">0:00</span>
+        </div>
+      </div>
+      
+      <div class="volume-control">
+        <i class="fas fa-volume-down"></i>
+        <input 
+          type="range" 
+          id="volumeSlider" 
+          min="0" 
+          max="100" 
+          value="70"
+          class="volume-slider"
+          aria-label="Volume"
+        >
+        <i class="fas fa-volume-up"></i>
+      </div>
+    </div>
+    
+    <!-- Playlist actuelle -->
+    <div class="current-playlist" id="currentPlaylist">
+      <h5>Playlist actuelle</h5>
+      <div class="playlist-tracks" id="playlistTracks">
+        <!-- Les pistes de la playlist seront injectées ici -->
+      </div>
+      <div class="playlist-controls">
+        <button class="playlist-btn" id="clearPlaylist" aria-label="Vider la playlist">
+          <i class="fas fa-trash"></i>
+          Vider
+        </button>
+        <button class="playlist-btn" id="shufflePlaylist" aria-label="Mélanger la playlist">
+          <i class="fas fa-random"></i>
+          Mélanger
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Statistiques audio -->
+  <div class="audio-stats" id="audioStats">
+    <div class="stat-card">
+      <i class="fas fa-music"></i>
+      <div class="stat-content">
+        <div class="stat-number" id="totalTracks">0</div>
+        <div class="stat-label">Pistes totales</div>
+      </div>
+    </div>
+    
+    <div class="stat-card">
+      <i class="fas fa-clock"></i>
+      <div class="stat-content">
+        <div class="stat-number" id="totalDuration">0:00</div>
+        <div class="stat-label">Durée totale</div>
+      </div>
+    </div>
+    
+    <div class="stat-card">
+      <i class="fas fa-folder"></i>
+      <div class="stat-content">
+        <div class="stat-number" id="totalAlbums">0</div>
+        <div class="stat-label">Albums</div>
+      </div>
+    </div>
+    
+    <div class="stat-card">
+      <i class="fas fa-tags"></i>
+      <div class="stat-content">
+        <div class="stat-number" id="totalTags">0</div>
+        <div class="stat-label">Tags</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modale de détails audio -->
+  <div class="audio-modal" id="audioModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="modalTitle">Détails audio</h3>
+        <button class="modal-close" id="modalClose" aria-label="Fermer">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      
+      <div class="modal-body" id="modalBody">
+        <!-- Le contenu de la modale sera injecté ici -->
+      </div>
+      
+      <div class="modal-footer">
+        <button class="modal-btn secondary" id="modalCancel">Annuler</button>
+        <button class="modal-btn primary" id="modalAction">Action</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Template pour les résultats de recherche -->
+<template id="resultItemTemplate">
+  <div class="result-item" data-file-path="">
+    <div class="result-icon">
+      <i class="fas fa-music"></i>
+    </div>
+    
+    <div class="result-info">
+      <div class="result-title"></div>
+      <div class="result-meta">
+        <span class="result-category"></span>
+        <span class="result-duration"></span>
+        <span class="result-size"></span>
+      </div>
+      <div class="result-tags"></div>
+    </div>
+    
+    <div class="result-actions">
+      <button class="action-btn play-btn" aria-label="Lire">
+        <i class="fas fa-play"></i>
+      </button>
+      <button class="action-btn queue-btn" aria-label="Ajouter à la playlist">
+        <i class="fas fa-plus"></i>
+      </button>
+      <button class="action-btn info-btn" aria-label="Informations">
+        <i class="fas fa-info-circle"></i>
+      </button>
+      <button class="action-btn download-btn" aria-label="Télécharger">
+        <i class="fas fa-download"></i>
+      </button>
+    </div>
+  </div>
+</template>
+
+<!-- Template pour les pistes de playlist -->
+<template id="playlistTrackTemplate">
+  <div class="playlist-track" data-file-path="">
+    <div class="track-info">
+      <div class="track-title"></div>
+      <div class="track-duration"></div>
+    </div>
+    
+    <div class="track-actions">
+      <button class="track-btn remove-btn" aria-label="Retirer de la playlist">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+  </div>
+</template>

@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZOLA - Site Officiel</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Meta tags SEO -->
+    <meta name="description" content="Découvrez l'univers de ZOLA, l'artiste qui redéfinit les frontières du rap français. Timeline interactive, musique et parcours complet.">
+    <meta name="keywords" content="ZOLA, rap français, musique, artiste, timeline, parcours, albums">
+    <meta name="author" content="ZOLA">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="ZOLA - Site Officiel">
+    <meta property="og:description" content="L'évolution du rap français - Timeline interactive de ZOLA">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://zola-officiel.com">
+    <meta property="og:image" content="https://via.placeholder.com/1200x630/00ff41/000000?text=ZOLA">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="ZOLA - Site Officiel">
+    <meta name="twitter:description" content="L'évolution du rap français - Timeline interactive de ZOLA">
+    <meta name="twitter:image" content="https://via.placeholder.com/1200x630/00ff41/000000?text=ZOLA">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../assets/images/favicon.ico">
+    <link rel="apple-touch-icon" href="../assets/images/apple-touch-icon.png">
+    
+    <!-- Preload des ressources critiques -->
+    <link rel="preload" href="../css/main.css" as="style">
+    <link rel="preload" href="../js/main.js" as="script">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" as="style">
+</head>
+<body>
+    <!-- Skip link pour l'accessibilité -->
+    <a href="#main-content" class="skip-link">Aller au contenu principal</a>
+    
+    <!-- Audio Elements -->
+    <audio id="missionPassed" preload="auto">
+        <source src="https://www.soundjay.com/misc/sounds/bell-ringing-05.wav" type="audio/wav">
+    </audio>
+    <audio id="gtatheme" preload="auto" loop>
+        <source src="https://www.soundjay.com/misc/sounds/bell-ringing-05.wav" type="audio/wav">
+    </audio>
+    
+    <!-- Audio Controls -->
+    <div class="audio-controls">
+        <button id="toggleAudio" class="audio-btn" aria-label="Activer/Désactiver l'audio">
+            <i class="fas fa-volume-up"></i>
+        </button>
+        <button id="toggleTheme" class="theme-btn" aria-label="Changer de thème">
+            <i class="fas fa-moon"></i>
+        </button>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <h1 class="logo">ZOLA</h1>
+            <p class="tagline">L'ÉVOLUTION DU RAP</p>
+        </div>
+        <div class="rain-container"></div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="timeline-nav" role="navigation" aria-label="Navigation principale">
+        <div class="nav-container">
+            <button class="nav-btn" data-section="intro" aria-label="Aller à l'introduction">Intro</button>
+            <button class="nav-btn" data-section="debuts" aria-label="Aller aux débuts">Débuts</button>
+            <button class="nav-btn" data-section="succes" aria-label="Aller aux succès">Succès</button>
+            <button class="nav-btn" data-section="albums" aria-label="Aller aux albums">Albums</button>
+            <button class="nav-btn" data-section="moments" aria-label="Aller aux moments clés">Moments Clés</button>
+            <button class="nav-btn" data-section="actuel" aria-label="Aller aux projets actuels">Actuel</button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main id="main-content" class="main-content" role="main">
+        <!-- Introduction Section -->
+        <section id="intro" class="timeline-section active" data-year="2024">
+            <div class="section-content">
+                <div class="year-badge">2024</div>
+                <h2>INTRODUCTION</h2>
+                <div class="content-grid">
+                    <div class="text-content">
+                        <p>Bienvenue dans l'univers de <strong>ZOLA</strong>, l'artiste qui redéfinit les frontières du rap français. Découvrez son parcours exceptionnel, de ses débuts dans les rues de la ville jusqu'à sa position actuelle de référence dans l'industrie musicale.</p>
+                        <p>Une histoire de passion, de détermination et d'innovation artistique qui continue d'inspirer toute une génération.</p>
+                    </div>
+                    <div class="image-content">
+                        <div class="placeholder-image">
+                            <i class="fas fa-user" aria-hidden="true"></i>
+                            <p>Portrait ZOLA</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Débuts Section -->
+        <section id="debuts" class="timeline-section" data-year="2018">
+            <div class="section-content">
+                <div class="year-badge">2018</div>
+                <h2>LES DÉBUTS</h2>
+                <div class="content-grid">
+                    <div class="text-content">
+                        <h3>Origines et Premiers Pas</h3>
+                        <p>ZOLA commence son aventure musicale dans les rues de sa ville natale. Influencé par les légendes du rap français et américain, il développe son style unique, mélangeant flow technique et paroles percutantes.</p>
+                        <p>Premiers freestyles dans les cyphers locaux, premières collaborations avec des artistes émergents. La graine est plantée.</p>
+                    </div>
+                    <div class="image-content">
+                        <div class="placeholder-image">
+                            <i class="fas fa-microphone" aria-hidden="true"></i>
+                            <p>Premiers Freestyles</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Succès Section -->
+        <section id="succes" class="timeline-section" data-year="2020">
+            <div class="section-content">
+                <div class="year-badge">2020</div>
+                <h2>PREMIERS SUCCÈS</h2>
+                <div class="content-grid">
+                    <div class="text-content">
+                        <h3>La Percée</h3>
+                        <p>2020 marque le tournant décisif. Le premier EP "Origines" fait sensation dans la scène underground. Les critiques reconnaissent son talent unique et sa capacité à raconter des histoires authentiques.</p>
+                        <p>Premiers concerts, premières interviews, premiers fans fidèles. ZOLA commence à se faire un nom.</p>
+                    </div>
+                    <div class="image-content">
+                        <div class="placeholder-image">
+                            <i class="fas fa-compact-disc" aria-hidden="true"></i>
+                            <p>EP "Origines"</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Albums Section -->
+        <section id="albums" class="timeline-section" data-year="2022">
+            <div class="section-content">
+                <div class="year-badge">2022</div>
+                <h2>ALBUMS & COLLABORATIONS</h2>
+                <div class="content-grid">
+                    <div class="text-content">
+                        <h3>L'Album Décisif</h3>
+                        <p>"Évolution" - le premier album studio qui propulse ZOLA au rang des artistes majeurs. Collaborations avec des producteurs renommés et des featuring d'artistes établis.</p>
+                        <p>L'album reçoit des critiques élogieuses et confirme le statut de ZOLA comme force créative majeure du rap français.</p>
+                    </div>
+                    <div class="image-content">
+                        <div class="placeholder-image">
+                            <i class="fas fa-music" aria-hidden="true"></i>
+                            <p>Album "Évolution"</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Moments Clés Section -->
+        <section id="moments" class="timeline-section" data-year="2023">
+            <div class="section-content">
+                <div class="year-badge">2023</div>
+                <h2>MOMENTS CLÉS</h2>
+                <div class="content-grid">
+                    <div class="text-content">
+                        <h3>L'Année de la Consécration</h3>
+                        <p>Festivals majeurs, tournées internationales, nominations aux prix de la musique. ZOLA devient une référence incontournable.</p>
+                        <p>Son influence s'étend au-delà de la musique : mode, art, culture urbaine. ZOLA devient un phénomène culturel.</p>
+                    </div>
+                    <div class="image-content">
+                        <div class="placeholder-image">
+                            <i class="fas fa-trophy" aria-hidden="true"></i>
+                            <p>Récompenses</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Actuel Section -->
+        <section id="actuel" class="timeline-section" data-year="2024">
+            <div class="section-content">
+                <div class="year-badge">2024</div>
+                <h2>PROJETS ACTUELS & FUTUR</h2>
+                <div class="content-grid">
+                    <div class="text-content">
+                        <h3>L'Avenir</h3>
+                        <p>Nouvel album en préparation, projets collaboratifs innovants, expansion internationale. ZOLA continue de repousser les limites.</p>
+                        <p>Son influence grandit chaque jour, inspirant une nouvelle génération d'artistes et de créateurs.</p>
+                    </div>
+                    <div class="image-content">
+                        <div class="placeholder-image">
+                            <i class="fas fa-rocket" aria-hidden="true"></i>
+                            <p>Projets Futurs</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Music Player -->
+    <div class="music-player" role="region" aria-label="Lecteur de musique">
+        <div class="player-header">
+            <h3><i class="fas fa-headphones" aria-hidden="true"></i> DISCOGRAPHIE ZOLA</h3>
+        </div>
+        <div class="track-list">
+            <div class="track" data-audio="https://www.soundjay.com/misc/sounds/bell-ringing-05.wav">
+                <div class="track-info">
+                    <span class="track-title">Origines</span>
+                    <span class="track-album">EP - 2020</span>
+                </div>
+                <button class="play-btn" aria-label="Lire Origines">
+                    <i class="fas fa-play" aria-hidden="true"></i>
+                </button>
+            </div>
+            <div class="track" data-audio="https://www.soundjay.com/misc/sounds/bell-ringing-05.wav">
+                <div class="track-info">
+                    <span class="track-title">Évolution</span>
+                    <span class="track-album">Album - 2022</span>
+                </div>
+                <button class="play-btn" aria-label="Lire Évolution">
+                    <i class="fas fa-play" aria-hidden="true"></i>
+                </button>
+            </div>
+            <div class="track" data-audio="https://www.soundjay.com/misc/sounds/bell-ringing-05.wav">
+                <div class="track-info">
+                    <span class="track-title">Nouveau Monde</span>
+                    <span class="track-album">Single - 2023</span>
+                </div>
+                <button class="play-btn" aria-label="Lire Nouveau Monde">
+                    <i class="fas fa-play" aria-hidden="true"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Fun Facts Section -->
+    <section class="fun-facts">
+        <h2>FUN FACTS</h2>
+        <div class="facts-grid">
+            <div class="fact-card">
+                <i class="fas fa-lightbulb" aria-hidden="true"></i>
+                <h3>Inspiration</h3>
+                <p>ZOLA écrit ses meilleures paroles entre 2h et 4h du matin</p>
+            </div>
+            <div class="fact-card">
+                <i class="fas fa-heart" aria-hidden="true"></i>
+                <h3>Passion</h3>
+                <p>Il a commencé à rapper à l'âge de 14 ans</p>
+            </div>
+            <div class="fact-card">
+                <i class="fas fa-star" aria-hidden="true"></i>
+                <h3>Réussite</h3>
+                <p>Plus de 100 millions d'écoutes sur toutes plateformes</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" role="contentinfo">
+        <div class="footer-content">
+            <p>&copy; 2024 ZOLA - Tous droits réservés</p>
+            <div class="social-links">
+                <a href="#" aria-label="Instagram de ZOLA"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+                <a href="#" aria-label="Twitter de ZOLA"><i class="fab fa-twitter" aria-hidden="true"></i></a>
+                <a href="#" aria-label="YouTube de ZOLA"><i class="fab fa-youtube" aria-hidden="true"></i></a>
+                <a href="#" aria-label="Spotify de ZOLA"><i class="fab fa-spotify" aria-hidden="true"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Mission Passed Overlay -->
+    <div id="missionPassedOverlay" class="mission-overlay" role="dialog" aria-label="Mission accomplie">
+        <div class="mission-content">
+            <h2>MISSION PASSED</h2>
+            <p>Étape débloquée !</p>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script type="module" src="../js/main.js"></script>
+    
+    <!-- Fallback pour les navigateurs sans support ES6 -->
+    <script nomodule>
+        console.warn('Votre navigateur ne supporte pas les modules ES6. Le site peut ne pas fonctionner correctement.');
+    </script>
+</body>
+</html>

@@ -1,0 +1,104 @@
+{
+  "audio": {
+    "sounds": {
+      "missionPassed": {
+        "src": "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav",
+        "type": "audio/wav",
+        "description": "Son Mission Passed GTA 4"
+      },
+      "gtatheme": {
+        "src": "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav",
+        "type": "audio/wav",
+        "description": "Thème GTA 4 ambiance urbaine"
+      }
+    },
+    "music": {
+      "origines": {
+        "title": "Origines",
+        "album": "EP - 2020",
+        "src": "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav",
+        "type": "audio/wav",
+        "duration": "3:45"
+      },
+      "evolution": {
+        "title": "Évolution",
+        "album": "Album - 2022",
+        "src": "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav",
+        "type": "audio/wav",
+        "duration": "4:12"
+      },
+      "nouveauMonde": {
+        "title": "Nouveau Monde",
+        "album": "Single - 2023",
+        "src": "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav",
+        "type": "audio/wav",
+        "duration": "3:28"
+      }
+    }
+  },
+  "images": {
+    "logo": {
+      "src": "https://via.placeholder.com/400x200/00ff41/000000?text=ZOLA",
+      "alt": "Logo ZOLA",
+      "description": "Logo principal de l'artiste"
+    },
+    "sections": {
+      "intro": {
+        "src": "https://via.placeholder.com/300x300/00ff41/000000?text=Portrait+ZOLA",
+        "alt": "Portrait ZOLA",
+        "description": "Portrait de l'artiste ZOLA"
+      },
+      "debuts": {
+        "src": "https://via.placeholder.com/300x300/ff6b35/000000?text=Freestyles",
+        "alt": "Premiers Freestyles",
+        "description": "ZOLA en train de freestyler"
+      },
+      "succes": {
+        "src": "https://via.placeholder.com/300x300/ffd700/000000?text=EP+Origines",
+        "alt": "EP Origines",
+        "description": "Couverture de l'EP Origines"
+      },
+      "albums": {
+        "src": "https://via.placeholder.com/300x300/00ff41/000000?text=Album+Evolution",
+        "alt": "Album Évolution",
+        "description": "Couverture de l'album Évolution"
+      },
+      "moments": {
+        "src": "https://via.placeholder.com/300x300/ff6b35/000000?text=Recompenses",
+        "alt": "Récompenses",
+        "description": "Trophées et récompenses"
+      },
+      "actuel": {
+        "src": "https://via.placeholder.com/300x300/ffd700/000000?text=Projets+Futurs",
+        "alt": "Projets Futurs",
+        "description": "Futurs projets de ZOLA"
+      }
+    },
+    "backgrounds": {
+      "city": {
+        "src": "https://via.placeholder.com/1920x1080/0a0a0a/00ff41?text=City+Background",
+        "alt": "Ville de nuit",
+        "description": "Arrière-plan urbain sombre"
+      },
+      "neon": {
+        "src": "https://via.placeholder.com/1920x1080/000000/00ff41?text=Neon+Effects",
+        "alt": "Effets néon",
+        "description": "Effets lumineux urbains"
+      }
+    }
+  },
+  "fonts": {
+    "primary": "Orbitron",
+    "secondary": "Roboto",
+    "fallback": "monospace"
+  },
+  "colors": {
+    "primary": "#00ff41",
+    "secondary": "#ff6b35",
+    "accent": "#ffd700",
+    "dark": "#0a0a0a",
+    "darker": "#050505",
+    "text": "#ffffff",
+    "textSecondary": "#cccccc"
+  }
+}
