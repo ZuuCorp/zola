@@ -2,19 +2,16 @@ import { defineConfig } from 'vite';
 import { resolve } from 'path';
 
 export default defineConfig({
-  root: '.',
+  root: 'components',
   base: '/zola/',
-  
+  publicDir: resolve(__dirname, 'public'),
   build: {
-    outDir: 'dist',
+    outDir: resolve(__dirname, 'docs'),
     assetsDir: 'assets',
     sourcemap: false,
     minify: 'terser',
     rollupOptions: {
       external: ['fsevents'],
-      input: {
-        main: resolve(__dirname, 'components/index.html')
-      },
       output: {
         manualChunks: {
           vendor: ['vite'],
@@ -33,18 +30,15 @@ export default defineConfig({
       }
     }
   },
-  
   server: {
     port: 3000,
     open: true,
     host: true
   },
-  
   preview: {
     port: 4173,
     open: true
   },
-  
   resolve: {
     alias: {
       '@': resolve(__dirname, './'),
@@ -53,7 +47,6 @@ export default defineConfig({
       '@assets': resolve(__dirname, './assets')
     }
   },
-  
   css: {
     devSourcemap: true,
     preprocessorOptions: {
@@ -62,10 +55,8 @@ export default defineConfig({
       }
     }
   },
-  
   optimizeDeps: {
     include: ['vite']
   },
-  
   plugins: []
 });
