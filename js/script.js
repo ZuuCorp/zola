@@ -536,19 +536,92 @@ window.addEventListener('load', () => {
             const id = app.getAttribute('data-app');
             if (id === 'music') {
                 document.getElementById('gtaPhone')?.classList.remove('open');
-                // Focus music list or play first preview if exists
                 const first = document.querySelector('#dynamicTrackList .track .play-btn');
                 first && first.click();
+                showToast('Lecture de l\'extrait');
+                return;
             }
-            if (id === 'social') {
-                window.open('https://instagram.com/binkszola', '_blank');
-            }
-            if (id === 'browser') {
-                window.open('https://www.youtube.com/@ZolaOfficiel', '_blank');
-            }
+            if (id === 'social') { window.open('https://instagram.com/binkszola', '_blank'); return; }
+            if (id === 'browser') { openPhoneView('browser'); return; }
+            if (id === 'contacts') { openPhoneView('contacts'); seedContacts(); return; }
+            if (id === 'messages') { openPhoneView('messages'); return; }
+            if (id === 'settings') { openPhoneView('settings'); return; }
         });
     });
+
+    document.querySelectorAll('[data-back]').forEach(btn => {
+        btn.addEventListener('click', () => {
+            closePhoneViews();
+        });
+    });
+
+    document.querySelectorAll('#app-browser [data-open]').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const href = btn.getAttribute('data-open');
+            if (href) window.open(href, '_blank');
+        });
+    });
+
+    document.getElementById('smsSend')?.addEventListener('click', () => {
+        const input = document.getElementById('smsInput');
+        const thread = document.getElementById('smsThread');
+        if (input?.value) {
+            const b = document.createElement('div');
+            b.className = 'bubble-out';
+            b.textContent = input.value;
+            thread?.appendChild(b);
+            input.value = '';
+            thread?.scrollTo({ top: thread.scrollHeight, behavior: 'smooth' });
+        }
+    });
+
+    document.getElementById('toggleAmbient')?.addEventListener('change', (e) => {
+        const on = e.target.checked;
+        const audio = document.getElementById('gtatheme');
+        if (audio) {
+            if (on) audio.play().catch(()=>{}); else audio.pause();
+        }
+    });
 });
+
+function openPhoneView(name) {
+    closePhoneViews();
+    const view = document.getElementById(`app-${name}`);
+    view?.classList.add('active');
+}
+
+function closePhoneViews() {
+    document.querySelectorAll('.phone-app').forEach(v => v.classList.remove('active'));
+}
+
+function seedContacts(){
+    const list = document.getElementById('contactsList');
+    if (!list || list.childElementCount) return;
+    const contacts = [
+        { name: 'Zola', avatar: 'Z' },
+        { name: 'Manager', avatar: 'M' },
+        { name: 'Prod', avatar: 'P' }
+    ];
+    const frag = document.createDocumentFragment();
+    contacts.forEach(c => {
+        const row = document.createElement('div');
+        row.className = 'contact-row';
+        row.innerHTML = `<div class="avatar">${c.avatar}</div><div>${c.name}</div><button class="row play">Appeler</button>`;
+        row.querySelector('button')?.addEventListener('click', () => showToast(`Appel vers ${c.name}`));
+        frag.appendChild(row);
+    });
+    list.appendChild(frag);
+}
+
+function showToast(text){
+    const zone = document.getElementById('siteToast');
+    if (!zone) return;
+    const t = document.createElement('div');
+    t.className = 'toast';
+    t.textContent = text;
+    zone.appendChild(t);
+    setTimeout(() => { t.remove(); }, 2500);
+}
 
 // Effet de particules pour l'ambiance
 function createParticle() {

@@ -560,7 +560,12 @@
   overflow: hidden;
   display: grid;
   grid-template-rows: 56px 1fr 72px;
+  transform: translateY(30px) scale(.98);
+  opacity: 0;
+  transition: transform .35s ease, opacity .35s ease;
 }
+
+.gta-phone.open .phone-frame { transform: translateY(0) scale(1); opacity: 1; }
 
 .phone-statusbar {
   display: grid;
@@ -578,6 +583,19 @@
   position: relative;
   background: radial-gradient(1200px 600px at 50% 20%, rgba(0,174,239,0.12), transparent 60%),
               url('https://images.unsplash.com/photo-1469474968028-56623f02e42e?q=80&w=1200&auto=format&fit=crop') center/cover no-repeat;
+}
+
+.phone-screen::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(800px 400px at 70% 120%, rgba(0,174,239,.18), transparent 60%);
+  animation: wallpaperPulse 6s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+@keyframes wallpaperPulse {
+  from { opacity: .35; transform: translateY(0); }
+  to { opacity: .6; transform: translateY(-8px); }
 }
 
 .app-grid {
@@ -620,6 +638,34 @@
 }
 
 .phone-dock .bubble { width: 48px; height: 48px; border-radius: 12px; }
+
+/* Phone app views */
+.phone-views { position: absolute; inset: 0; display: grid; }
+.phone-app { display: none; grid-template-rows: 48px 1fr; backdrop-filter: blur(2px); }
+.phone-app.active { display: grid; }
+.app-header { display: grid; grid-template-columns: auto 1fr auto; align-items: center; padding: 0 10px; border-bottom: 1px solid rgba(255,255,255,0.06); background: rgba(0,0,0,.35); }
+.app-header .title { text-align: center; font-weight: 700; color: var(--text-color); }
+.app-header .back { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); color: var(--text-color); border-radius: 8px; padding: 6px 10px; }
+.app-body { padding: 12px; overflow: auto; }
+
+/* Contacts */
+.contacts-list { display: grid; gap: 10px; }
+.contact-row { display: grid; grid-template-columns: 36px 1fr auto; gap: 10px; align-items: center; padding: 10px; background: rgba(0,0,0,0.35); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; }
+.avatar { width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(180deg,#0f90c5,#0a6a94); display: grid; place-items: center; font-weight: 700; }
+
+/* SMS */
+.sms-thread { display: grid; gap: 8px; }
+.bubble-in, .bubble-out { max-width: 80%; padding: 8px 12px; border-radius: 14px; }
+.bubble-in { background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.12); }
+.bubble-out { background: rgba(0,174,239,.18); border: 1px solid rgba(0,174,239,.32); justify-self: end; }
+.sms-input { display: grid; grid-template-columns: 1fr auto; gap: 8px; margin-top: 10px; }
+.sms-input input { background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12); border-radius: 10px; padding: 8px 10px; color: var(--text-color); }
+.sms-input button { background: rgba(0,174,239,.2); border: 1px solid rgba(0,174,239,.35); color: var(--text-color); border-radius: 10px; padding: 8px 10px; }
+
+/* Toast notification */
+.site-toast { position: fixed; top: 16px; right: 16px; display: grid; gap: 10px; z-index: var(--z-fixed); }
+.toast { background: rgba(0,0,0,.75); border: 1px solid rgba(255,255,255,.12); color: var(--text-color); border-radius: 10px; padding: 10px 14px; box-shadow: var(--neon-glow); animation: toastIn .25s ease; }
+@keyframes toastIn { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0);} }
 
 .mission-content {
   text-align: center;

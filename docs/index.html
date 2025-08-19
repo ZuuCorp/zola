@@ -7,13 +7,13 @@
     
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-  <script type="module" crossorigin src="/zola/assets/index-f57ea9e5.js"></script>
+  <script type="module" crossorigin src="/zola/assets/index-b05032df.js"></script>
   <link rel="modulepreload" crossorigin href="/zola/assets/audio-d47a3f8a.js">
   <link rel="modulepreload" crossorigin href="/zola/assets/timeline-2e251f52.js">
   <link rel="modulepreload" crossorigin href="/zola/assets/effects-c8e00909.js">
   <link rel="modulepreload" crossorigin href="/zola/assets/ui-88ccac77.js">
   <link rel="modulepreload" crossorigin href="/zola/assets/catalog-97bec3ca.js">
-  <link rel="stylesheet" href="/zola/assets/index-a811e0c6.css">
+  <link rel="stylesheet" href="/zola/assets/index-435e916b.css">
 </head>
 <body>
     <audio id="missionPassed" preload="auto">
@@ -80,13 +80,47 @@
             <div class="phone-screen">
                 <div class="app-grid">
                     <div class="app-icon" data-app="music"><div class="bubble"><i class="fas fa-music"></i></div><div class="label">Musique</div></div>
-                    <div class="app-icon" data-app="camera"><div class="bubble"><i class="fas fa-camera"></i></div><div class="label">Caméra</div></div>
-                    <div class="app-icon" data-app="map"><div class="bubble"><i class="fas fa-map"></i></div><div class="label">Carte</div></div>
-                    <div class="app-icon" data-app="social"><div class="bubble"><i class="fas fa-hashtag"></i></div><div class="label">Social</div></div>
-                    <div class="app-icon" data-app="calls"><div class="bubble"><i class="fas fa-phone"></i></div><div class="label">Appels</div></div>
-                    <div class="app-icon" data-app="messages"><div class="bubble"><i class="fas fa-message"></i></div><div class="label">SMS</div></div>
+                    <div class="app-icon" data-app="contacts"><div class="bubble"><i class="fas fa-address-book"></i></div><div class="label">Contacts</div></div>
+                    <div class="app-icon" data-app="messages"><div class="bubble"><i class="fas fa-comment-dots"></i></div><div class="label">Messages</div></div>
                     <div class="app-icon" data-app="browser"><div class="bubble"><i class="fas fa-globe"></i></div><div class="label">Web</div></div>
+                    <div class="app-icon" data-app="map"><div class="bubble"><i class="fas fa-map"></i></div><div class="label">Carte</div></div>
+                    <div class="app-icon" data-app="camera"><div class="bubble"><i class="fas fa-camera"></i></div><div class="label">Caméra</div></div>
+                    <div class="app-icon" data-app="social"><div class="bubble"><i class="fas fa-hashtag"></i></div><div class="label">Social</div></div>
                     <div class="app-icon" data-app="settings"><div class="bubble"><i class="fas fa-gear"></i></div><div class="label">Réglages</div></div>
+                </div>
+                <div class="phone-views">
+                    <div class="phone-app" id="app-contacts">
+                        <div class="app-header"><button class="back" data-back>Retour</button><div class="title">Contacts</div><div></div></div>
+                        <div class="app-body">
+                            <div class="contacts-list" id="contactsList"></div>
+                        </div>
+                    </div>
+                    <div class="phone-app" id="app-messages">
+                        <div class="app-header"><button class="back" data-back>Retour</button><div class="title">Messages</div><div></div></div>
+                        <div class="app-body">
+                            <div class="sms-thread" id="smsThread">
+                                <div class="bubble-in">Salut c'est Zola 👋</div>
+                                <div class="bubble-out">Force la mif ✨</div>
+                            </div>
+                            <div class="sms-input"><input id="smsInput" placeholder="Écrire un message..."><button id="smsSend">Envoyer</button></div>
+                        </div>
+                    </div>
+                    <div class="phone-app" id="app-browser">
+                        <div class="app-header"><button class="back" data-back>Retour</button><div class="title">Navigateur</div><div></div></div>
+                        <div class="app-body">
+                            <div style="display:grid; gap:8px;">
+                                <button class="row play" data-open="https://instagram.com/binkszola">Instagram</button>
+                                <button class="row play" data-open="https://www.youtube.com/@ZolaOfficiel">YouTube</button>
+                                <button class="row play" data-open="https://open.spotify.com/artist/0Vw76uk7P8yVtTClWyOhac">Spotify</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="phone-app" id="app-settings">
+                        <div class="app-header"><button class="back" data-back>Retour</button><div class="title">Réglages</div><div></div></div>
+                        <div class="app-body">
+                            <label style="display:flex;align-items:center;gap:8px;"><input type="checkbox" id="toggleAmbient"> Ambiance GTA</label>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="phone-dock">
@@ -109,6 +143,8 @@
             </div>
         </div>
     </footer>
+
+    <div class="site-toast" id="siteToast"></div>
 
     
     
