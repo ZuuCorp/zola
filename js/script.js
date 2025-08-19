@@ -507,6 +507,10 @@ window.addEventListener('load', () => {
     // GTA V phone overlay: toggle with ArrowUp
     const phone = document.getElementById('gtaPhone');
     const phoneTime = document.getElementById('phoneTime');
+    const sfxOpen = document.getElementById('sfxPhoneOpen');
+    const sfxClose = document.getElementById('sfxPhoneClose');
+    const sfxTap = document.getElementById('sfxTap');
+    const sfxSms = document.getElementById('sfxSms');
     function updatePhoneTime(){
         const d = new Date();
         phoneTime && (phoneTime.textContent = d.toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'}));
@@ -518,10 +522,19 @@ window.addEventListener('load', () => {
         if (e.key === 'ArrowUp') {
             e.preventDefault();
             if (phone) {
-                const open = phone.classList.toggle('open');
-                phone.setAttribute('aria-hidden', open ? 'false' : 'true');
+                const opening = !phone.classList.contains('open');
+                phone.classList.toggle('open');
+                phone.setAttribute('aria-hidden', opening ? 'false' : 'true');
+                try { (opening ? sfxOpen : sfxClose)?.play?.(); } catch {}
             }
         }
+    });
+
+    document.getElementById('openPhoneBtn')?.addEventListener('click', () => {
+        const opening = !phone?.classList.contains('open');
+        phone?.classList.toggle('open');
+        phone?.setAttribute('aria-hidden', opening ? 'false' : 'true');
+        try { (opening ? sfxOpen : sfxClose)?.play?.(); } catch {}
     });
 
     phone?.addEventListener('click', (e) => {
@@ -533,6 +546,7 @@ window.addEventListener('load', () => {
 
     document.querySelectorAll('.app-icon').forEach(app => {
         app.addEventListener('click', () => {
+            try { sfxTap?.play?.(); } catch {}
             const id = app.getAttribute('data-app');
             if (id === 'music') {
                 document.getElementById('gtaPhone')?.classList.remove('open');
@@ -572,7 +586,34 @@ window.addEventListener('load', () => {
             thread?.appendChild(b);
             input.value = '';
             thread?.scrollTo({ top: thread.scrollHeight, behavior: 'smooth' });
+            try { sfxSms?.play?.(); } catch {}
         }
+    });
+
+    document.querySelectorAll('[data-app-open]')?.forEach(el => {
+        el.addEventListener('click', () => {
+            const id = el.getAttribute('data-app-open');
+            if (!id) return;
+            openPhoneView(id);
+        });
+    });
+
+    // Dialer
+    document.querySelectorAll('[data-digit]')?.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const d = btn.getAttribute('data-digit');
+            const disp = document.getElementById('dialDisplay');
+            disp && (disp.textContent = (disp.textContent || '') + d);
+            try { sfxTap?.play?.(); } catch {}
+        });
+    });
+    document.getElementById('dialClear')?.addEventListener('click', () => {
+        const disp = document.getElementById('dialDisplay'); if (disp) disp.textContent='';
+    });
+    document.getElementById('dialCall')?.addEventListener('click', () => {
+        const disp = document.getElementById('dialDisplay');
+        showToast(`Appel vers ${disp?.textContent || ''}`);
+        try { sfxTap?.play?.(); } catch {}
     });
 
     document.getElementById('toggleAmbient')?.addEventListener('change', (e) => {

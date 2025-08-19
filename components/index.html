@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ZOLA - Site Officiel</title>
+    <link rel="manifest" href="/zola/manifest.json">
     <link rel="stylesheet" href="../css/main.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -15,6 +16,10 @@
     <audio id="gtatheme" preload="auto" loop>
         <source src="https://cdn.pixabay.com/download/audio/2021/09/13/audio_4a57b6f2b1.mp3?filename=ambient-city-9047.mp3" type="audio/mpeg">
     </audio>
+    <audio id="sfxPhoneOpen" preload="auto"><source src="https://cdn.pixabay.com/download/audio/2022/03/10/audio_6f3d8b0b52.mp3?filename=ui-opening-110624.mp3" type="audio/mpeg"></audio>
+    <audio id="sfxPhoneClose" preload="auto"><source src="https://cdn.pixabay.com/download/audio/2022/03/10/audio_86a376f1b0.mp3?filename=ui-closing-110626.mp3" type="audio/mpeg"></audio>
+    <audio id="sfxTap" preload="auto"><source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_399bea5006.mp3?filename=click-112245.mp3" type="audio/mpeg"></audio>
+    <audio id="sfxSms" preload="auto"><source src="https://cdn.pixabay.com/download/audio/2022/02/23/audio_1a8c09f996.mp3?filename=message-pop-alert-99339.mp3" type="audio/mpeg"></audio>
 
     <header class="header">
         <div class="header-content">
@@ -28,6 +33,8 @@
             </div>
         </div>
     </header>
+
+    <button class="open-phone-btn" id="openPhoneBtn" title="Téléphone"><i class="fas fa-mobile-alt"></i></button>
 
     <h2 class="gta-grid-title">Discographie & Photos</h2>
     <section class="gta-grid" id="gtaGrid"></section>
@@ -61,7 +68,7 @@
     </div>
 
     <div class="gta-phone" id="gtaPhone">
-        <div class="phone-frame">
+        <div class="phone-frame" tabindex="-1">
             <div class="phone-statusbar">
                 <div class="time" id="phoneTime">12:00</div>
                 <div class="icons">
@@ -114,13 +121,26 @@
                             <label style="display:flex;align-items:center;gap:8px;"><input type="checkbox" id="toggleAmbient"> Ambiance GTA</label>
                         </div>
                     </div>
+                    <div class="phone-app" id="app-calls">
+                        <div class="app-header"><button class="back" data-back>Retour</button><div class="title">Téléphone</div><div></div></div>
+                        <div class="app-body">
+                            <div id="dialDisplay" style="text-align:center;font-size:1.4rem;margin-bottom:10px;color:var(--text-color)"> </div>
+                            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;">
+                                ${[1,2,3,4,5,6,7,8,9,'*',0,'#'].map(k=>`<button class="row play" data-digit="${k}">${k}</button>`).join('')}
+                            </div>
+                            <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px;">
+                                <button class="row play" id="dialCall">Appeler</button>
+                                <button class="row play" id="dialClear">Effacer</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="phone-dock">
-                <div class="bubble"><i class="fas fa-phone"></i></div>
-                <div class="bubble"><i class="fas fa-music"></i></div>
-                <div class="bubble"><i class="fas fa-message"></i></div>
-                <div class="bubble"><i class="fas fa-camera"></i></div>
+                <div class="bubble" data-app-open="calls"><i class="fas fa-phone"></i></div>
+                <div class="bubble" data-app-open="music"><i class="fas fa-music"></i></div>
+                <div class="bubble" data-app-open="messages"><i class="fas fa-message"></i></div>
+                <div class="bubble" data-app-open="camera"><i class="fas fa-camera"></i></div>
             </div>
         </div>
     </div>
