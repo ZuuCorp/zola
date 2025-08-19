@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (window.zolaSite?.webCatalog) {
                 const tracks = window.zolaSite.webCatalog.getTracks();
                 renderTracks(tracks);
-                renderGtaGrid(tracks);
+                renderGtaGridFromAlbums(window.zolaSite.webCatalog.getAlbums(), tracks);
             }
         });
 
@@ -87,6 +87,28 @@ function renderGtaGrid(tracks){
     });
     staticPhotos.forEach((url, i) => items.push({ img: url, label: 'ZOLA' }));
 
+    const fragment = document.createDocumentFragment();
+    items.slice(0, 12).forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'gta-card';
+        card.innerHTML = `
+            <img src="${item.img}" alt="${item.label}">
+            <div class="gta-badge">${item.label}</div>
+        `;
+        fragment.appendChild(card);
+    });
+    container.innerHTML = '';
+    container.appendChild(fragment);
+}
+
+function renderGtaGridFromAlbums(albums, tracks){
+    const container = document.getElementById('gtaGrid');
+    if (!container) return;
+    const items = [];
+    (albums || []).slice(0, 9).forEach(a => items.push({ img: a.cover, label: a.title }));
+    if (items.length < 12) {
+        (tracks || []).slice(0, 12 - items.length).forEach(t => items.push({ img: t.cover, label: t.title }));
+    }
     const fragment = document.createDocumentFragment();
     items.slice(0, 12).forEach(item => {
         const card = document.createElement('div');

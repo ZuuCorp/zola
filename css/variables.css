@@ -1,9 +1,9 @@
 /* Variables CSS pour le thème ZOLA */
 :root {
   /* Couleurs principales */
-  --primary-color: #00ff41;
-  --secondary-color: #ff6b35;
-  --accent-color: #ffd700;
+  --primary-color: #E6C200; /* Gold */
+  --secondary-color: #FF2D55; /* Magenta */
+  --accent-color: #00D1FF; /* Cyan */
   --dark-bg: #0a0a0a;
   --darker-bg: #050505;
   --text-color: #ffffff;
@@ -11,9 +11,9 @@
   --border-color: #333333;
   
   /* Effets et ombres */
-  --neon-glow: 0 0 20px var(--primary-color);
-  --neon-glow-strong: 0 0 30px var(--primary-color), 0 0 40px var(--primary-color);
-  --rain-color: rgba(0, 255, 65, 0.3);
+  --neon-glow: 0 0 16px var(--accent-color);
+  --neon-glow-strong: 0 0 24px var(--accent-color), 0 0 36px var(--accent-color);
+  --rain-color: rgba(230, 194, 0, 0.22);
   
   /* Transitions */
   --transition-fast: 0.3s ease;
