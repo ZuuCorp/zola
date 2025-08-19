@@ -8,12 +8,12 @@
     
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-  <script type="module" crossorigin src="/zola/assets/index-4e288863.js"></script>
+  <script type="module" crossorigin src="/zola/assets/index-c02ab31e.js"></script>
   <link rel="modulepreload" crossorigin href="/zola/assets/audio-d47a3f8a.js">
   <link rel="modulepreload" crossorigin href="/zola/assets/timeline-2e251f52.js">
   <link rel="modulepreload" crossorigin href="/zola/assets/effects-c8e00909.js">
   <link rel="modulepreload" crossorigin href="/zola/assets/ui-88ccac77.js">
-  <link rel="modulepreload" crossorigin href="/zola/assets/catalog-97bec3ca.js">
+  <link rel="modulepreload" crossorigin href="/zola/assets/catalog-a0d47d8f.js">
   <link rel="stylesheet" href="/zola/assets/index-eb2a3c71.css">
 </head>
 <body>
@@ -33,10 +33,10 @@
             <h1 class="logo">ZOLA</h1>
             <p class="tagline">L'ÉVOLUTION DU RAP</p>
             <div class="social-icons">
-                <a href="https://instagram.com/binkszola" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.instagram.com/binkszola/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
                 <a href="https://www.youtube.com/@ZolaOfficiel" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-                <a href="https://open.spotify.com/artist/0Vw76uk7P8yVtTClWyOhac" target="_blank" rel="noopener" aria-label="Spotify"><i class="fab fa-spotify"></i></a>
-                <a href="https://twitter.com/ZOLA_Music" target="_blank" rel="noopener" aria-label="Twitter/X"><i class="fab fa-x-twitter"></i></a>
+                <a href="https://open.spotify.com/search/artist%3Azola%20album%3Asurvie" target="_blank" rel="noopener" aria-label="Spotify"><i class="fab fa-spotify"></i></a>
+                <a href="https://x.com/binkszola" target="_blank" rel="noopener" aria-label="Twitter/X"><i class="fab fa-x-twitter"></i></a>
             </div>
         </div>
     </header>
@@ -92,8 +92,8 @@
                     <div class="app-icon" data-app="messages"><div class="bubble"><i class="fas fa-comment-dots"></i></div><div class="label">Messages</div></div>
                     <div class="app-icon" data-app="browser"><div class="bubble"><i class="fas fa-globe"></i></div><div class="label">Web</div></div>
                     <div class="app-icon" data-app="map"><div class="bubble"><i class="fas fa-map"></i></div><div class="label">Carte</div></div>
-                    <div class="app-icon" data-app="camera"><div class="bubble"><i class="fas fa-camera"></i></div><div class="label">Caméra</div></div>
-                    <div class="app-icon" data-app="social"><div class="bubble"><i class="fas fa-hashtag"></i></div><div class="label">Social</div></div>
+                    <div class="app-icon" data-app="camera"><div class="bubble"><i class="fas fa-camera"></i></div><div class="label">Snapmatic</div></div>
+                    <div class="app-icon" data-app="social"><div class="bubble"><i class="fas fa-hashtag"></i></div><div class="label">Lifeinvader</div></div>
                     <div class="app-icon" data-app="settings"><div class="bubble"><i class="fas fa-gear"></i></div><div class="label">Réglages</div></div>
                 </div>
                 <div class="phone-views">
@@ -128,13 +128,21 @@
                         </div>
                     </div>
                     <div class="phone-app" id="app-browser">
-                        <div class="app-header"><button class="back" data-back>Retour</button><div class="title">Navigateur</div><div></div></div>
+                        <div class="app-header"><button class="back" data-back>Retour</button><div class="title">Internet</div><div></div></div>
                         <div class="app-body">
-                            <div style="display:grid; gap:8px;">
-                                <button class="row play" data-open="https://instagram.com/binkszola">Instagram</button>
-                                <button class="row play" data-open="https://www.youtube.com/@ZolaOfficiel">YouTube</button>
-                                <button class="row play" data-open="https://open.spotify.com/artist/0Vw76uk7P8yVtTClWyOhac">Spotify</button>
-                            </div>
+                            <div class="social-launcher" id="phoneSocialLauncher"></div>
+                        </div>
+                    </div>
+                    <div class="phone-app" id="app-social">
+                        <div class="app-header"><button class="back" data-back>Retour</button><div class="title">Lifeinvader</div><div></div></div>
+                        <div class="app-body">
+                            <div class="social-grid" id="lifeGrid"></div>
+                        </div>
+                    </div>
+                    <div class="phone-app" id="app-camera">
+                        <div class="app-header"><button class="back" data-back>Retour</button><div class="title">Snapmatic</div><div></div></div>
+                        <div class="app-body">
+                            <div class="snap-grid" id="snapGrid"></div>
                         </div>
                     </div>
                     <div class="phone-app" id="app-settings">
@@ -171,10 +179,10 @@
         <div class="footer-content">
             <p>&copy; 2024 ZOLA - Tous droits réservés</p>
             <div class="social-links">
-                <a href="https://instagram.com/binkszola" target="_blank" rel="noopener" aria-label="Instagram de ZOLA"><i class="fab fa-instagram" aria-hidden="true"></i></a>
-                <a href="https://twitter.com/ZOLA_Music" target="_blank" rel="noopener" aria-label="Twitter de ZOLA"><i class="fab fa-twitter" aria-hidden="true"></i></a>
+                <a href="https://www.instagram.com/binkszola/" target="_blank" rel="noopener" aria-label="Instagram de ZOLA"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+                <a href="https://x.com/binkszola" target="_blank" rel="noopener" aria-label="Twitter de ZOLA"><i class="fab fa-twitter" aria-hidden="true"></i></a>
                 <a href="https://www.youtube.com/@ZolaOfficiel" target="_blank" rel="noopener" aria-label="YouTube de ZOLA"><i class="fab fa-youtube" aria-hidden="true"></i></a>
-                <a href="https://open.spotify.com/artist/0Vw76uk7P8yVtTClWyOhac" target="_blank" rel="noopener" aria-label="Spotify de ZOLA"><i class="fab fa-spotify" aria-hidden="true"></i></a>
+                <a href="https://open.spotify.com/search/artist%3Azola%20album%3Asurvie" target="_blank" rel="noopener" aria-label="Spotify de ZOLA"><i class="fab fa-spotify" aria-hidden="true"></i></a>
             </div>
         </div>
     </footer>
