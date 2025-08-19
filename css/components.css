@@ -18,7 +18,7 @@
 }
 
 .logo {
-  font-size: 8rem;
+  font-size: 7rem;
   font-weight: 900;
   color: var(--primary-color);
   text-shadow: var(--neon-glow);
@@ -316,8 +316,8 @@
   position: relative;
   border-radius: 14px;
   overflow: hidden;
-  border: 2px solid var(--primary-color);
-  background: #000;
+  border: 1px solid var(--border-color);
+  background: linear-gradient(180deg, rgba(14,14,14,.9), rgba(5,5,5,.95));
   box-shadow: var(--neon-glow);
   aspect-ratio: 1/1;
   cursor: pointer;
@@ -338,24 +338,61 @@
 
 .gta-card .gta-badge {
   position: absolute;
-  bottom: 10px;
-  left: 10px;
-  background: rgba(0,0,0,0.7);
-  border: 1px solid var(--primary-color);
+  bottom: 12px;
+  left: 12px;
+  background: rgba(0,0,0,0.6);
+  border: 1px solid rgba(255,255,255,0.12);
   border-radius: 8px;
-  padding: 6px 10px;
-  color: var(--primary-color);
+  padding: 6px 12px;
+  color: var(--text-color);
   font-weight: 700;
   letter-spacing: .5px;
 }
 
 .gta-grid-title {
   text-align: center;
-  font-size: 2.2rem;
+  font-size: 2.4rem;
   color: var(--primary-color);
   margin-top: var(--spacing-xxl);
   text-shadow: var(--neon-glow);
   text-transform: uppercase;
+}
+
+/* ===== ALBUM MODAL ===== */
+.album-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: var(--z-modal);
+}
+
+.album-modal .modal-card {
+  width: min(920px, 92vw);
+  background: linear-gradient(180deg, #0f1113, #0a0b0d);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 20px;
+  padding: 20px;
+  color: var(--text-color);
+}
+
+.album-modal img {
+  width: 100%; height: auto; border-radius: 12px; object-fit: cover;
+}
+
+.album-meta h3 { font-size: 1.6rem; margin-bottom: 8px; color: var(--primary-color); }
+.album-meta .sub { color: var(--text-secondary); margin-bottom: 14px; }
+.tracklist { max-height: 52vh; overflow: auto; border-top: 1px solid var(--border-color); padding-top: 10px; }
+.tracklist .row { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 10px; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+.row .play { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); color: var(--text-color); border-radius: 8px; padding: 8px 12px; }
+
+@media (max-width: 767.98px) {
+  .album-modal .modal-card { grid-template-columns: 1fr; }
 }
 
 /* ===== FUN FACTS ===== */

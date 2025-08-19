@@ -32,6 +32,20 @@
     <h2 class="gta-grid-title">Discographie & Photos</h2>
     <section class="gta-grid" id="gtaGrid"></section>
 
+    <div class="album-modal" id="albumModal" aria-hidden="true">
+        <div class="modal-card" role="dialog" aria-label="Détails de l'album">
+            <div class="cover"><img id="modalCover" alt="Couverture" /></div>
+            <div class="album-meta">
+                <h3 id="modalTitle">Album</h3>
+                <div class="sub" id="modalSub">ZOLA · Année</div>
+                <div class="tracklist" id="modalTracklist"></div>
+                <div style="margin-top:12px; display:flex; gap:10px;">
+                    <a id="modalOpenApple" class="row play" target="_blank" rel="noopener">Ouvrir dans Apple Music</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="music-player" role="region" aria-label="Lecteur de musique">
         <div class="player-header">
             <h3><i class="fas fa-headphones" aria-hidden="true"></i> DISCOGRAPHIE ZOLA</h3>

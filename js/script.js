@@ -105,9 +105,9 @@ function renderGtaGridFromAlbums(albums, tracks){
     const container = document.getElementById('gtaGrid');
     if (!container) return;
     const items = [];
-    (albums || []).slice(0, 9).forEach(a => items.push({ img: a.cover, label: a.title }));
+    (albums || []).slice(0, 9).forEach(a => items.push({ img: a.cover, label: a.title, album: a }));
     if (items.length < 12) {
-        (tracks || []).slice(0, 12 - items.length).forEach(t => items.push({ img: t.cover, label: t.title }));
+        (tracks || []).slice(0, 12 - items.length).forEach(t => items.push({ img: t.cover, label: t.title, track: t }));
     }
     const fragment = document.createDocumentFragment();
     items.slice(0, 12).forEach(item => {
@@ -117,10 +117,50 @@ function renderGtaGridFromAlbums(albums, tracks){
             <img src="${item.img}" alt="${item.label}">
             <div class="gta-badge">${item.label}</div>
         `;
+        card.addEventListener('click', () => {
+            if (item.album) openAlbumModal(item.album, tracks);
+        });
         fragment.appendChild(card);
     });
     container.innerHTML = '';
     container.appendChild(fragment);
+}
+
+function openAlbumModal(album, tracks){
+    const modal = document.getElementById('albumModal');
+    const cover = document.getElementById('modalCover');
+    const title = document.getElementById('modalTitle');
+    const sub = document.getElementById('modalSub');
+    const list = document.getElementById('modalTracklist');
+    const link = document.getElementById('modalOpenApple');
+    cover.src = album.cover;
+    title.textContent = album.title;
+    const year = (album.releaseDate || '').slice(0,4);
+    sub.textContent = `${album.artist} · ${year || ''}`;
+    link.href = album.url || '#';
+    const related = (tracks || []).filter(t => t.album === album.title);
+    const fragment = document.createDocumentFragment();
+    related.slice(0, 20).forEach(t => {
+        const row = document.createElement('div');
+        row.className = 'row';
+        row.innerHTML = `<div>${t.title}</div><button class="play">Lecture</button>`;
+        row.querySelector('.play').addEventListener('click', () => {
+            if (window.zolaSite?.getModule('audio')) {
+                window.zolaSite.getModule('audio').playAudio(t.previewUrl);
+            }
+        });
+        fragment.appendChild(row);
+    });
+    list.innerHTML = '';
+    list.appendChild(fragment);
+    modal.style.display = 'flex';
+    modal.setAttribute('aria-hidden','false');
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            modal.style.display = 'none';
+            modal.setAttribute('aria-hidden','true');
+        }
+    }, { once: true });
 }
 
 // Initialisation de l'effet de pluie
