@@ -53,7 +53,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
         window.addEventListener('catalog:loaded', () => {
             if (window.zolaSite?.webCatalog) {
-                renderTracks(window.zolaSite.webCatalog.getTracks());
+                const tracks = window.zolaSite.webCatalog.getTracks();
+                renderTracks(tracks);
+                renderGtaGrid(tracks);
             }
         });
 
@@ -68,6 +70,36 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
+
+function renderGtaGrid(tracks){
+    const container = document.getElementById('gtaGrid');
+    if (!container) return;
+
+    const staticPhotos = [
+        'https://i.scdn.co/image/ab6761610000e5ebba4d5d1f0d9c6e2177b4e9e2',
+        'https://i.scdn.co/image/ab6761610000f178ba4d5d1f0d9c6e2177b4e9e2',
+        'https://i.scdn.co/image/ab67616d0000b273b2d2d2a9d2f19d5c17b23a00'
+    ];
+
+    const items = [];
+    tracks.slice(0, 9).forEach(t => {
+        items.push({ img: t.cover, label: t.album || t.title });
+    });
+    staticPhotos.forEach((url, i) => items.push({ img: url, label: 'ZOLA' }));
+
+    const fragment = document.createDocumentFragment();
+    items.slice(0, 12).forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'gta-card';
+        card.innerHTML = `
+            <img src="${item.img}" alt="${item.label}">
+            <div class="gta-badge">${item.label}</div>
+        `;
+        fragment.appendChild(card);
+    });
+    container.innerHTML = '';
+    container.appendChild(fragment);
+}
 
 // Initialisation de l'effet de pluie
 function initializeRain() {
