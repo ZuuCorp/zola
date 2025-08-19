@@ -102,28 +102,21 @@ function renderGtaGrid(tracks){
 }
 
 function renderGtaGridFromAlbums(albums, tracks){
-    const container = document.getElementById('gtaGrid');
-    if (!container) return;
+    // Populate phone music app grid instead of external grid
+    const grid = document.getElementById('phoneMusicGrid');
+    if (!grid) return;
     const items = [];
-    (albums || []).slice(0, 9).forEach(a => items.push({ img: a.cover, label: a.title, album: a }));
-    if (items.length < 12) {
-        (tracks || []).slice(0, 12 - items.length).forEach(t => items.push({ img: t.cover, label: t.title, track: t }));
-    }
+    (albums || []).slice(0, 12).forEach(a => items.push({ img: a.cover, label: a.title, album: a }));
     const fragment = document.createDocumentFragment();
-    items.slice(0, 12).forEach(item => {
+    items.forEach(item => {
         const card = document.createElement('div');
-        card.className = 'gta-card';
-        card.innerHTML = `
-            <img src="${item.img}" alt="${item.label}">
-            <div class="gta-badge">${item.label}</div>
-        `;
-        card.addEventListener('click', () => {
-            if (item.album) openAlbumModal(item.album, tracks);
-        });
+        card.className = 'card';
+        card.innerHTML = `<img src="${item.img}" alt="${item.label}"><div class="cap">${item.label}</div>`;
+        card.addEventListener('click', () => openPhoneAlbumDetail(item.album, tracks));
         fragment.appendChild(card);
     });
-    container.innerHTML = '';
-    container.appendChild(fragment);
+    grid.innerHTML = '';
+    grid.appendChild(fragment);
 }
 
 function openAlbumModal(album, tracks){
@@ -160,6 +153,39 @@ function openAlbumModal(album, tracks){
             modal.style.display = 'none';
             modal.setAttribute('aria-hidden','true');
         }
+    }, { once: true });
+}
+
+function openPhoneAlbumDetail(album, tracks){
+    const cover = document.getElementById('padCover');
+    const title = document.getElementById('padTitle');
+    const sub = document.getElementById('padSub');
+    const list = document.getElementById('padTracklist');
+    const detail = document.getElementById('phoneAlbumDetail');
+    const grid = document.getElementById('phoneMusicGrid');
+    if (!detail || !grid) return;
+    cover.src = album.cover;
+    title.textContent = album.title;
+    const year = (album.releaseDate || '').slice(0,4);
+    sub.textContent = `${album.artist} · ${year || ''}`;
+    const related = (tracks || []).filter(t => t.album === album.title);
+    const fragment = document.createDocumentFragment();
+    related.slice(0, 20).forEach(t => {
+        const row = document.createElement('div');
+        row.className = 'row';
+        row.innerHTML = `<div>${t.title}</div><button class="play">Lecture</button>`;
+        row.querySelector('.play')?.addEventListener('click', () => {
+            if (window.zolaSite?.getModule('audio')) window.zolaSite.getModule('audio').playAudio(t.previewUrl);
+        });
+        fragment.appendChild(row);
+    });
+    list.innerHTML = '';
+    list.appendChild(fragment);
+    grid.style.display = 'none';
+    detail.style.display = 'block';
+    document.querySelector('#app-music [data-back]')?.addEventListener('click', () => {
+        detail.style.display = 'none';
+        grid.style.display = 'grid';
     }, { once: true });
 }
 

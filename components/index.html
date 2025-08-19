@@ -36,8 +36,9 @@
 
     <button class="open-phone-btn" id="openPhoneBtn" title="Téléphone"><i class="fas fa-mobile-alt"></i></button>
 
-    <h2 class="gta-grid-title">Discographie & Photos</h2>
-    <section class="gta-grid" id="gtaGrid"></section>
+    <!-- Ext UI hidden: the phone contains the full experience -->
+    <h2 class="gta-grid-title" style="display:none">Discographie & Photos</h2>
+    <section class="gta-grid" id="gtaGrid" style="display:none"></section>
 
     <div class="album-modal" id="albumModal" aria-hidden="true">
         <div class="modal-card" role="dialog" aria-label="Détails de l'album">
@@ -53,7 +54,7 @@
         </div>
     </div>
 
-    <div class="music-player" role="region" aria-label="Lecteur de musique">
+    <div class="music-player" role="region" aria-label="Lecteur de musique" style="display:none">
         <div class="player-header">
             <h3><i class="fas fa-headphones" aria-hidden="true"></i> DISCOGRAPHIE ZOLA</h3>
         </div>
@@ -89,6 +90,20 @@
                     <div class="app-icon" data-app="settings"><div class="bubble"><i class="fas fa-gear"></i></div><div class="label">Réglages</div></div>
                 </div>
                 <div class="phone-views">
+                    <div class="phone-app" id="app-music">
+                        <div class="app-header"><button class="back" data-back>Retour</button><div class="title">Musique</div><div></div></div>
+                        <div class="app-body">
+                            <div class="phone-music-grid" id="phoneMusicGrid"></div>
+                            <div class="phone-album-detail" id="phoneAlbumDetail" style="display:none">
+                                <div class="pad">
+                                    <img id="padCover" alt="cover" />
+                                    <div class="padTitle" id="padTitle">Album</div>
+                                    <div class="padSub" id="padSub">ZOLA · 2024</div>
+                                    <div class="padList" id="padTracklist"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="phone-app" id="app-contacts">
                         <div class="app-header"><button class="back" data-back>Retour</button><div class="title">Contacts</div><div></div></div>
                         <div class="app-body">

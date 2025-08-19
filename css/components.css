@@ -661,6 +661,17 @@
 .app-header .back { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); color: var(--text-color); border-radius: 8px; padding: 6px 10px; }
 .app-body { padding: 12px; overflow: auto; }
 
+/* Phone Music app */
+.phone-music-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.phone-music-grid .card { position: relative; border-radius: 10px; overflow: hidden; border: 1px solid rgba(255,255,255,.1); background: rgba(0,0,0,.35); cursor: pointer; }
+.phone-music-grid img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.phone-music-grid .cap { position: absolute; inset: auto 0 0 0; padding: 6px 8px; font-size: 12px; color: var(--text-color); background: linear-gradient(180deg, transparent, rgba(0,0,0,.6)); }
+.phone-album-detail .pad { display: grid; gap: 10px; }
+.phone-album-detail img { width: 100%; border-radius: 10px; }
+.phone-album-detail .padTitle { font-weight: 700; color: var(--text-color); }
+.phone-album-detail .padSub { color: var(--text-secondary); }
+.phone-album-detail .padList .row { display: grid; grid-template-columns: 1fr auto; gap: 8px; align-items: center; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,.06); }
+
 /* Contacts */
 .contacts-list { display: grid; gap: 10px; }
 .contact-row { display: grid; grid-template-columns: 36px 1fr auto; gap: 10px; align-items: center; padding: 10px; background: rgba(0,0,0,0.35); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; }
