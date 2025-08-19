@@ -8,15 +8,22 @@
     
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-  <script type="module" crossorigin src="/zola/assets/index-c02ab31e.js"></script>
+  <script type="module" crossorigin src="/zola/assets/index-8a823030.js"></script>
   <link rel="modulepreload" crossorigin href="/zola/assets/audio-d47a3f8a.js">
   <link rel="modulepreload" crossorigin href="/zola/assets/timeline-2e251f52.js">
   <link rel="modulepreload" crossorigin href="/zola/assets/effects-c8e00909.js">
   <link rel="modulepreload" crossorigin href="/zola/assets/ui-88ccac77.js">
   <link rel="modulepreload" crossorigin href="/zola/assets/catalog-a0d47d8f.js">
-  <link rel="stylesheet" href="/zola/assets/index-eb2a3c71.css">
+  <link rel="stylesheet" href="/zola/assets/index-331ee8ea.css">
 </head>
 <body>
+    <div id="gtaLoader" class="gta-loader" aria-hidden="false">
+        <div class="loader-panel">
+            <div class="gta-spinner"></div>
+            <div class="gta-loader-title">Chargement...</div>
+            <div class="gta-tip" id="gtaTip">Astuce: appuie sur Flèche Haut pour ouvrir le téléphone.</div>
+        </div>
+    </div>
     <audio id="missionPassed" preload="auto">
         <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_5c2a9d3d85.mp3?filename=retro-game-notification-112194.mp3" type="audio/mpeg">
     </audio>
@@ -80,13 +87,14 @@
             <div class="phone-statusbar">
                 <div class="time" id="phoneTime">12:00</div>
                 <div class="icons">
+                    <span class="lte">LTE</span>
                     <i class="fas fa-signal"></i>
                     <i class="fas fa-wifi"></i>
                     <i class="fas fa-battery-half"></i>
                 </div>
             </div>
             <div class="phone-screen">
-                <div class="app-grid">
+                <div class="app-grid" id="appGrid">
                     <div class="app-icon" data-app="music"><div class="bubble"><i class="fas fa-music"></i></div><div class="label">Musique</div></div>
                     <div class="app-icon" data-app="contacts"><div class="bubble"><i class="fas fa-address-book"></i></div><div class="label">Contacts</div></div>
                     <div class="app-icon" data-app="messages"><div class="bubble"><i class="fas fa-comment-dots"></i></div><div class="label">Messages</div></div>
@@ -96,6 +104,7 @@
                     <div class="app-icon" data-app="social"><div class="bubble"><i class="fas fa-hashtag"></i></div><div class="label">Lifeinvader</div></div>
                     <div class="app-icon" data-app="settings"><div class="bubble"><i class="fas fa-gear"></i></div><div class="label">Réglages</div></div>
                 </div>
+                <div class="page-dots" id="pageDots"><span class="dot active"></span><span class="dot"></span></div>
                 <div class="phone-views">
                     <div class="phone-app" id="app-music">
                         <div class="app-header"><button class="back" data-back>Retour</button><div class="title">Musique</div><div></div></div>

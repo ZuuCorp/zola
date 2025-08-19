@@ -523,6 +523,10 @@ window.addEventListener('resize', () => {
 
 // Animation de chargement initial
 window.addEventListener('load', () => {
+    const loader = document.getElementById('gtaLoader');
+    const hideLoader = () => loader && (loader.classList.add('hidden'), setTimeout(()=> loader.remove(), 400));
+    setTimeout(hideLoader, 1200);
+    document.addEventListener('click', hideLoader, { once: true });
     document.body.style.opacity = '0';
     document.body.style.transition = 'opacity 1s ease';
     
@@ -649,6 +653,17 @@ window.addEventListener('load', () => {
             if (on) audio.play().catch(()=>{}); else audio.pause();
         }
     });
+
+    // iFruit wiggle mode (long press on home screen)
+    const gridEl = document.getElementById('appGrid');
+    let wiggleTimer = null;
+    gridEl?.addEventListener('pointerdown', () => {
+        wiggleTimer = setTimeout(() => gridEl.classList.add('wiggle'), 600);
+    });
+    gridEl?.addEventListener('pointerup', () => {
+        if (wiggleTimer) clearTimeout(wiggleTimer);
+    });
+    gridEl?.addEventListener('dblclick', () => gridEl.classList.remove('wiggle'));
 });
 
 function openPhoneView(name) {
