@@ -503,6 +503,51 @@ window.addEventListener('load', () => {
     setTimeout(() => {
         document.body.style.opacity = '1';
     }, 100);
+
+    // GTA V phone overlay: toggle with ArrowUp
+    const phone = document.getElementById('gtaPhone');
+    const phoneTime = document.getElementById('phoneTime');
+    function updatePhoneTime(){
+        const d = new Date();
+        phoneTime && (phoneTime.textContent = d.toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'}));
+    }
+    updatePhoneTime();
+    setInterval(updatePhoneTime, 60*1000);
+
+    window.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowUp') {
+            e.preventDefault();
+            if (phone) {
+                const open = phone.classList.toggle('open');
+                phone.setAttribute('aria-hidden', open ? 'false' : 'true');
+            }
+        }
+    });
+
+    phone?.addEventListener('click', (e) => {
+        if (e.target === phone) {
+            phone.classList.remove('open');
+            phone.setAttribute('aria-hidden','true');
+        }
+    });
+
+    document.querySelectorAll('.app-icon').forEach(app => {
+        app.addEventListener('click', () => {
+            const id = app.getAttribute('data-app');
+            if (id === 'music') {
+                document.getElementById('gtaPhone')?.classList.remove('open');
+                // Focus music list or play first preview if exists
+                const first = document.querySelector('#dynamicTrackList .track .play-btn');
+                first && first.click();
+            }
+            if (id === 'social') {
+                window.open('https://instagram.com/binkszola', '_blank');
+            }
+            if (id === 'browser') {
+                window.open('https://www.youtube.com/@ZolaOfficiel', '_blank');
+            }
+        });
+    });
 });
 
 // Effet de particules pour l'ambiance

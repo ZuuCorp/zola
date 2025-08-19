@@ -537,6 +537,90 @@
   .mobile-dock { display: flex; }
 }
 
+/* ===== GTA V PHONE OVERLAY ===== */
+.gta-phone {
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,0.45);
+  z-index: var(--z-modal);
+}
+
+.gta-phone.open { display: flex; }
+
+.phone-frame {
+  width: min(360px, 86vw);
+  height: min(720px, 86vh);
+  border-radius: 28px;
+  background: linear-gradient(180deg, #0f1113, #0a0b0d);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.6), inset 0 0 0 2px rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.12);
+  overflow: hidden;
+  display: grid;
+  grid-template-rows: 56px 1fr 72px;
+}
+
+.phone-statusbar {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  padding: 0 14px;
+  color: var(--text-secondary);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.phone-statusbar .time { font-weight: 700; color: var(--text-color); }
+.phone-statusbar .icons { display: flex; gap: 12px; align-items: center; }
+
+.phone-screen {
+  position: relative;
+  background: radial-gradient(1200px 600px at 50% 20%, rgba(0,174,239,0.12), transparent 60%),
+              url('https://images.unsplash.com/photo-1469474968028-56623f02e42e?q=80&w=1200&auto=format&fit=crop') center/cover no-repeat;
+}
+
+.app-grid {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 1fr;
+  gap: 12px;
+  padding: 16px;
+}
+
+.app-icon {
+  display: grid;
+  grid-template-rows: 1fr auto;
+  place-items: center;
+  gap: 8px;
+  color: var(--text-color);
+  text-align: center;
+  cursor: pointer;
+}
+
+.app-icon .bubble {
+  width: 56px; height: 56px; border-radius: 14px;
+  display: grid; place-items: center; font-size: 22px;
+  background: rgba(0,0,0,0.35);
+  border: 1px solid rgba(255,255,255,0.12);
+  box-shadow: var(--neon-glow);
+}
+
+.app-icon .label { font-size: 12px; color: var(--text-secondary); }
+
+.phone-dock {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  padding: 12px 16px;
+  background: rgba(0,0,0,0.35);
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+
+.phone-dock .bubble { width: 48px; height: 48px; border-radius: 12px; }
+
 .mission-content {
   text-align: center;
   color: var(--primary-color);
