@@ -6,6 +6,7 @@ import { TimelineManager } from './modules/timeline-manager.js';
 import { EffectsManager } from './modules/effects-manager.js';
 import { UIManager } from './modules/ui-manager.js';
 import { ConfigManager } from './modules/config-manager.js';
+import { WebCatalog } from './modules/web-catalog.js';
 
 class ZolaSite {
     constructor() {
@@ -23,6 +24,10 @@ class ZolaSite {
             
             // Initialiser tous les modules
             await this.initializeModules();
+            
+            // Charger le catalogue web (client-only) pour compléter la discographie
+            this.webCatalog = new WebCatalog();
+            await this.webCatalog.init();
             
             // Démarrer les effets visuels
             this.startVisualEffects();

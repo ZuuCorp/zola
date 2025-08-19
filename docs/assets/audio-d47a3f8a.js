@@ -1,0 +1,1 @@
+class t{constructor(t){this.config=t}async init(){}pauseAll(){var t,r;this.current&&(null==(r=(t=this.current).pause)||r.call(t))}resumeAll(){var t,r;this.current&&(null==(r=(t=this.current).play)||r.call(t))}async playAudio(t){if(this.current)try{this.current.pause()}catch{}const r=new Audio(t);this.current=r,await r.play()}}export{t as A};

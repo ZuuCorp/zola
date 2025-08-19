@@ -28,6 +28,45 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Démarrer le thème GTA après le premier clic
     document.addEventListener('click', startGTATheme, { once: true });
+
+    // Dynamic iTunes previews -> fill #dynamicTrackList
+    const list = document.querySelector('#dynamicTrackList');
+    if (list) {
+        const renderTracks = (tracks) => {
+            const fragment = document.createDocumentFragment();
+            tracks.slice(0, 20).forEach(track => {
+                const item = document.createElement('div');
+                item.className = 'track';
+                item.dataset.audio = track.previewUrl;
+                item.innerHTML = `
+                    <div class="track-info">
+                        <span class="track-title">${track.title}</span>
+                        <span class="track-album">${track.album}</span>
+                    </div>
+                    <button class="play-btn" aria-label="Lire ${track.title}"><i class="fas fa-play"></i></button>
+                `;
+                fragment.appendChild(item);
+            });
+            list.innerHTML = '';
+            list.appendChild(fragment);
+        };
+
+        window.addEventListener('catalog:loaded', () => {
+            if (window.zolaSite?.webCatalog) {
+                renderTracks(window.zolaSite.webCatalog.getTracks());
+            }
+        });
+
+        list.addEventListener('click', (e) => {
+            const btn = e.target.closest('.play-btn');
+            if (!btn) return;
+            const track = btn.closest('.track');
+            const src = track?.dataset?.audio;
+            if (src && window.zolaSite?.getModule('audio')) {
+                window.zolaSite.getModule('audio').playAudio(src);
+            }
+        });
+    }
 });
 
 // Initialisation de l'effet de pluie

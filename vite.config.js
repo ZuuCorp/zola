@@ -2,25 +2,24 @@ import { defineConfig } from 'vite';
 import { resolve } from 'path';
 
 export default defineConfig({
-  root: '.',
-  base: './',
-  
+  root: 'components',
+  base: '/zola/',
+  publicDir: resolve(__dirname, 'public'),
   build: {
-    outDir: 'dist',
+    outDir: resolve(__dirname, 'docs'),
     assetsDir: 'assets',
     sourcemap: false,
     minify: 'terser',
     rollupOptions: {
-      input: {
-        main: resolve(__dirname, 'components/index.html')
-      },
+      external: ['fsevents'],
       output: {
         manualChunks: {
           vendor: ['vite'],
           audio: ['./js/modules/audio-manager.js'],
           timeline: ['./js/modules/timeline-manager.js'],
           effects: ['./js/modules/effects-manager.js'],
-          ui: ['./js/modules/ui-manager.js']
+          ui: ['./js/modules/ui-manager.js'],
+          catalog: ['./js/modules/web-catalog.js']
         }
       }
     },
@@ -31,18 +30,15 @@ export default defineConfig({
       }
     }
   },
-  
   server: {
     port: 3000,
     open: true,
     host: true
   },
-  
   preview: {
     port: 4173,
     open: true
   },
-  
   resolve: {
     alias: {
       '@': resolve(__dirname, './'),
@@ -51,7 +47,6 @@ export default defineConfig({
       '@assets': resolve(__dirname, './assets')
     }
   },
-  
   css: {
     devSourcemap: true,
     preprocessorOptions: {
@@ -60,10 +55,8 @@ export default defineConfig({
       }
     }
   },
-  
   optimizeDeps: {
     include: ['vite']
   },
-  
   plugins: []
 });
