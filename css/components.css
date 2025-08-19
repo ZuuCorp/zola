@@ -464,6 +464,42 @@
   animation: fadeIn var(--animation-duration-medium);
 }
 
+/* ===== MOBILE DOCK (PHONE UI) ===== */
+.mobile-dock {
+  position: fixed;
+  bottom: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.7);
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  padding: 10px 14px;
+  display: none;
+  gap: 12px;
+  z-index: var(--z-fixed);
+  backdrop-filter: blur(10px);
+}
+
+.mobile-dock .dock-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  color: var(--text-color);
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.mobile-dock .dock-btn.active {
+  border-color: var(--accent-color);
+  box-shadow: 0 0 12px rgba(0,209,255,.35);
+}
+
+@media (max-width: 575.98px) {
+  .mobile-dock { display: flex; }
+}
+
 .mission-content {
   text-align: center;
   color: var(--primary-color);
