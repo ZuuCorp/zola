@@ -3,7 +3,7 @@ import { resolve } from 'path';
 
 export default defineConfig({
   root: '.',
-  base: './',
+  base: '/zola/',
   
   build: {
     outDir: 'dist',
@@ -11,6 +11,7 @@ export default defineConfig({
     sourcemap: false,
     minify: 'terser',
     rollupOptions: {
+      external: ['fsevents'],
       input: {
         main: resolve(__dirname, 'components/index.html')
       },
@@ -20,7 +21,8 @@ export default defineConfig({
           audio: ['./js/modules/audio-manager.js'],
           timeline: ['./js/modules/timeline-manager.js'],
           effects: ['./js/modules/effects-manager.js'],
-          ui: ['./js/modules/ui-manager.js']
+          ui: ['./js/modules/ui-manager.js'],
+          catalog: ['./js/modules/web-catalog.js']
         }
       }
     },
