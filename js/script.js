@@ -574,85 +574,19 @@ window.addEventListener('load', () => {
         }
     });
 
-    document.querySelectorAll('.app-icon').forEach(app => {
-        app.addEventListener('click', () => {
-            try { sfxTap?.play?.(); } catch {}
-            const id = app.getAttribute('data-app');
-            if (id === 'music') {
-                document.getElementById('gtaPhone')?.classList.remove('open');
-                const first = document.querySelector('#dynamicTrackList .track .play-btn');
-                first && first.click();
-                showToast('Lecture de l\'extrait');
-                return;
-            }
-            if (id === 'social') { window.open('https://instagram.com/binkszola', '_blank'); return; }
-            if (id === 'browser') { openPhoneView('browser'); return; }
-            if (id === 'contacts') { openPhoneView('contacts'); seedContacts(); return; }
-            if (id === 'messages') { openPhoneView('messages'); return; }
-            if (id === 'settings') { openPhoneView('settings'); return; }
-        });
-    });
+    // iframe-based phone now handles its own UI
 
-    document.querySelectorAll('[data-back]').forEach(btn => {
-        btn.addEventListener('click', () => {
-            closePhoneViews();
-        });
-    });
+    // no-op: handled in iframe
 
-    document.querySelectorAll('#app-browser [data-open]').forEach(btn => {
-        btn.addEventListener('click', () => {
-            const href = btn.getAttribute('data-open');
-            if (href) window.open(href, '_blank');
-        });
-    });
+    // no-op: handled in iframe
 
-    document.getElementById('smsSend')?.addEventListener('click', () => {
-        const input = document.getElementById('smsInput');
-        const thread = document.getElementById('smsThread');
-        if (input?.value) {
-            const b = document.createElement('div');
-            b.className = 'bubble-out';
-            b.textContent = input.value;
-            thread?.appendChild(b);
-            input.value = '';
-            thread?.scrollTo({ top: thread.scrollHeight, behavior: 'smooth' });
-            try { sfxSms?.play?.(); } catch {}
-        }
-    });
+    // no-op: handled in iframe
 
-    document.querySelectorAll('[data-app-open]')?.forEach(el => {
-        el.addEventListener('click', () => {
-            const id = el.getAttribute('data-app-open');
-            if (!id) return;
-            openPhoneView(id);
-        });
-    });
+    // no-op: handled in iframe
 
-    // Dialer
-    document.querySelectorAll('[data-digit]')?.forEach(btn => {
-        btn.addEventListener('click', () => {
-            const d = btn.getAttribute('data-digit');
-            const disp = document.getElementById('dialDisplay');
-            disp && (disp.textContent = (disp.textContent || '') + d);
-            try { sfxTap?.play?.(); } catch {}
-        });
-    });
-    document.getElementById('dialClear')?.addEventListener('click', () => {
-        const disp = document.getElementById('dialDisplay'); if (disp) disp.textContent='';
-    });
-    document.getElementById('dialCall')?.addEventListener('click', () => {
-        const disp = document.getElementById('dialDisplay');
-        showToast(`Appel vers ${disp?.textContent || ''}`);
-        try { sfxTap?.play?.(); } catch {}
-    });
+    // no-op: handled in iframe
 
-    document.getElementById('toggleAmbient')?.addEventListener('change', (e) => {
-        const on = e.target.checked;
-        const audio = document.getElementById('gtatheme');
-        if (audio) {
-            if (on) audio.play().catch(()=>{}); else audio.pause();
-        }
-    });
+    // no-op: handled in iframe
 
     // iFruit wiggle mode (long press on home screen)
     const gridEl = document.getElementById('appGrid');
@@ -664,6 +598,31 @@ window.addEventListener('load', () => {
         if (wiggleTimer) clearTimeout(wiggleTimer);
     });
     gridEl?.addEventListener('dblclick', () => gridEl.classList.remove('wiggle'));
+
+    const phoneEl = document.getElementById('gtaPhone');
+    const ifr = document.getElementById('ifrPhone');
+    document.getElementById('openMissionsBtn')?.addEventListener('click', () => {
+        phoneEl?.classList.add('open');
+        const missionsHtml = `
+          <div style="padding:12px;color:#fff">
+            <h3 style="margin:0 0 10px">Missions GTA V</h3>
+            <div style="display:grid;gap:10px">
+              <div style="background:rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:10px">
+                <strong>Prologue</strong><br>
+                Braquage à Ludendorff. Introduction de Michael, Trevor.
+              </div>
+              <div style="background:rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:10px">
+                <strong>Franklin et Lamar</strong><br>
+                Repossession de voitures. Début de l’arc Franklin.
+              </div>
+              <div style="background:rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:10px">
+                <strong>Jewel Store Job</strong><br>
+                Premier casse à Los Santos, choix de l’approche.
+              </div>
+            </div>
+          </div>`;
+        try { ifr?.contentWindow?.postMessage({ type: 'openMissions', html: missionsHtml }, '*'); } catch {}
+    });
 });
 
 function openPhoneView(name) {

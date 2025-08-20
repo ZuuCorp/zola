@@ -42,6 +42,7 @@
     </header>
 
     <button class="open-phone-btn" id="openPhoneBtn" title="Téléphone"><i class="fas fa-mobile-alt"></i></button>
+    <button class="open-phone-btn" id="openMissionsBtn" title="Missions" style="right:80px"><i class="fas fa-list-check"></i></button>
 
     <!-- Ext UI hidden: the phone contains the full experience -->
     <h2 class="gta-grid-title" style="display:none">Discographie & Photos</h2>
@@ -76,104 +77,8 @@
     </div>
 
     <div class="gta-phone" id="gtaPhone">
-        <div class="phone-frame" tabindex="-1">
-            <div class="phone-statusbar">
-                <div class="time" id="phoneTime">12:00</div>
-                <div class="icons">
-                    <span class="lte">LTE</span>
-                    <i class="fas fa-signal"></i>
-                    <i class="fas fa-wifi"></i>
-                    <i class="fas fa-battery-half"></i>
-                </div>
-            </div>
-            <div class="phone-screen">
-                <div class="app-grid" id="appGrid">
-                    <div class="app-icon" data-app="music"><div class="bubble"><i class="fas fa-music"></i></div><div class="label">Musique</div></div>
-                    <div class="app-icon" data-app="contacts"><div class="bubble"><i class="fas fa-address-book"></i></div><div class="label">Contacts</div></div>
-                    <div class="app-icon" data-app="messages"><div class="bubble"><i class="fas fa-comment-dots"></i></div><div class="label">Messages</div></div>
-                    <div class="app-icon" data-app="browser"><div class="bubble"><i class="fas fa-globe"></i></div><div class="label">Web</div></div>
-                    <div class="app-icon" data-app="map"><div class="bubble"><i class="fas fa-map"></i></div><div class="label">Carte</div></div>
-                    <div class="app-icon" data-app="camera"><div class="bubble"><i class="fas fa-camera"></i></div><div class="label">Snapmatic</div></div>
-                    <div class="app-icon" data-app="social"><div class="bubble"><i class="fas fa-hashtag"></i></div><div class="label">Lifeinvader</div></div>
-                    <div class="app-icon" data-app="settings"><div class="bubble"><i class="fas fa-gear"></i></div><div class="label">Réglages</div></div>
-                </div>
-                <div class="page-dots" id="pageDots"><span class="dot active"></span><span class="dot"></span></div>
-                <div class="phone-views">
-                    <div class="phone-app" id="app-music">
-                        <div class="app-header"><button class="back" data-back>Retour</button><div class="title">Musique</div><div></div></div>
-                        <div class="app-body">
-                            <div class="phone-music-grid" id="phoneMusicGrid"></div>
-                            <div class="phone-album-detail" id="phoneAlbumDetail" style="display:none">
-                                <div class="pad">
-                                    <img id="padCover" alt="cover" />
-                                    <div class="padTitle" id="padTitle">Album</div>
-                                    <div class="padSub" id="padSub">ZOLA · 2024</div>
-                                    <div class="padList" id="padTracklist"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="phone-app" id="app-contacts">
-                        <div class="app-header"><button class="back" data-back>Retour</button><div class="title">Contacts</div><div></div></div>
-                        <div class="app-body">
-                            <div class="contacts-list" id="contactsList"></div>
-                        </div>
-                    </div>
-                    <div class="phone-app" id="app-messages">
-                        <div class="app-header"><button class="back" data-back>Retour</button><div class="title">Messages</div><div></div></div>
-                        <div class="app-body">
-                            <div class="sms-thread" id="smsThread">
-                                <div class="bubble-in">Salut c'est Zola 👋</div>
-                                <div class="bubble-out">Force la mif ✨</div>
-                            </div>
-                            <div class="sms-input"><input id="smsInput" placeholder="Écrire un message..."><button id="smsSend">Envoyer</button></div>
-                        </div>
-                    </div>
-                    <div class="phone-app" id="app-browser">
-                        <div class="app-header"><button class="back" data-back>Retour</button><div class="title">Internet</div><div></div></div>
-                        <div class="app-body">
-                            <div class="social-launcher" id="phoneSocialLauncher"></div>
-                        </div>
-                    </div>
-                    <div class="phone-app" id="app-social">
-                        <div class="app-header"><button class="back" data-back>Retour</button><div class="title">Lifeinvader</div><div></div></div>
-                        <div class="app-body">
-                            <div class="social-grid" id="lifeGrid"></div>
-                        </div>
-                    </div>
-                    <div class="phone-app" id="app-camera">
-                        <div class="app-header"><button class="back" data-back>Retour</button><div class="title">Snapmatic</div><div></div></div>
-                        <div class="app-body">
-                            <div class="snap-grid" id="snapGrid"></div>
-                        </div>
-                    </div>
-                    <div class="phone-app" id="app-settings">
-                        <div class="app-header"><button class="back" data-back>Retour</button><div class="title">Réglages</div><div></div></div>
-                        <div class="app-body">
-                            <label style="display:flex;align-items:center;gap:8px;"><input type="checkbox" id="toggleAmbient"> Ambiance GTA</label>
-                        </div>
-                    </div>
-                    <div class="phone-app" id="app-calls">
-                        <div class="app-header"><button class="back" data-back>Retour</button><div class="title">Téléphone</div><div></div></div>
-                        <div class="app-body">
-                            <div id="dialDisplay" style="text-align:center;font-size:1.4rem;margin-bottom:10px;color:var(--text-color)"> </div>
-                            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;">
-                                ${[1,2,3,4,5,6,7,8,9,'*',0,'#'].map(k=>`<button class="row play" data-digit="${k}">${k}</button>`).join('')}
-                            </div>
-                            <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px;">
-                                <button class="row play" id="dialCall">Appeler</button>
-                                <button class="row play" id="dialClear">Effacer</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="phone-dock">
-                <div class="bubble" data-app-open="calls"><i class="fas fa-phone"></i></div>
-                <div class="bubble" data-app-open="music"><i class="fas fa-music"></i></div>
-                <div class="bubble" data-app-open="messages"><i class="fas fa-message"></i></div>
-                <div class="bubble" data-app-open="camera"><i class="fas fa-camera"></i></div>
-            </div>
+        <div class="phone-frame" tabindex="-1" style="padding:0;">
+            <iframe id="ifrPhone" src="./phone/index.html" title="iFruit phone" style="width:100%;height:100%;border:0;background:transparent"></iframe>
         </div>
     </div>
 

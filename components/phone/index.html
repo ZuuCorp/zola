@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>iFruit Phone (Embed)</title>
+    <link rel="stylesheet" href="./style.css">
+    <script src="https://kit.fontawesome.com/57b65d1d2a.js" crossorigin="anonymous"></script>
+    <script defer src="./index.js"></script>
+    <style>
+      body { margin:0; background: transparent; }
+    </style>
+  </head>
+  <body>
+    <!-- Begin copied structure -->
+    <div id="phone">
+      <div class="phone">
+        <div class="phone-outside">
+          <div class="logo"><h3>iFruit</h3></div>
+          <div class="time"><h5 id="timer"></h5></div>
+        </div>
+        <div class="line"><h1 id="changer">Welcome</h1></div>
+        <div id="phone-screen">
+          <div id="line1" class="line1"><button onclick="email()"><i class="fas fa-envelope"></i></button><button onclick="messages()"><i class="fas fa-comment"></i></button><button onclick="Contacts()"><i class="fas fa-address-book"></i></button></div>
+          <div id="line2" class="line2"><button onclick="qjob()"><i class="fas fa-users"></i></button><button onclick="Jobs()"><i class="fas fa-clipboard-check"></i></button><button onclick="settings()"><i class="fas fa-cog"></i></button></div>
+          <div id="line3" class="line3"><button onclick="camera()"><i class="fas fa-camera"></i></button><button onclick="webbrowser()"><i class="fas fa-globe"></i></button><button onclick="Serve()"><i class="fas fa-exclamation-triangle"></i></button></div>
+          <div id="camera"><div id="grid"><div id="line-v-1"></div><div id="line-v-2"></div><div id="line-v-3"></div><div id="line-v-4"></div><div id="line"></div><div id="line"></div><div id="line"></div><div id="line"></div></div></div>
+          <div id="messApp" class="message-app"></div>
+          <div id="conApp"></div>
+          <div id="qapp" class="quick-app"></div>
+          <div id="setting"></div>
+          <div id="serv" class="serv-app"></div>
+          <div id="jobs"></div>
+          <div id="email_App"></div>
+          <div id="browser"></div>
+          <!-- Missions app -->
+          <div id="missions" style="display:none"></div>
+        </div>
+        <div id="phone-bottom">
+          <i onclick="search()" class="fas fa-search"></i>
+          <i onclick="home()" class="fas fa-apple-alt"></i>
+          <i onclick="back()" class="fas fa-arrow-left"></i>
+        </div>
+      </div>
+    </div>
+    <script>
+      window.addEventListener('message', (e) => {
+        if (!e.data) return;
+        if (e.data.type === 'openMissions') {
+          const el = document.getElementById('missions');
+          if (el) { el.style.display = 'block'; el.innerHTML = e.data.html || ''; }
+        }
+      });
+    </script>
+  </body>
+  </html>
+
